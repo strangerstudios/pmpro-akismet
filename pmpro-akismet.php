@@ -36,13 +36,63 @@ function pmpro_akismet_pmpro_required() {
         'akismet/akismet.php' => __( 'Akismet', 'pmpro-akismet' )
     );
 
-    foreach( $required_plugins as $file => $plugin_name ) {
-        if ( ! is_plugin_active( $file ) ) {
-            $message = sprintf( __( 'The %s plugin requires the %s plugin to be active.', 'pmpro-akismet' ), 'Paid Memberships Pro - Akismet Integration', $plugin_name );
-            echo '<div class="error"><p>' . esc_html( $message ) . '</p></div>';
-            return;
+    // Check if the required plugins are installed.
+    $missing_plugins = array();
+    foreach ( $required_plugins as $plugin => $name ) {
+        if ( ! file_exists( WP_PLUGIN_DIR . '/' . $plugin ) ) {
+            $missing_plugins[$plugin] = $name;
+        }
+    }
+
+    // If there are missing plugins, show a notice.
+    if ( ! empty( $missing_plugins ) ) {
+        // Build install links here.
+        $install_plugins = array();
+        foreach( $missing_plugins as $path => $name ) {
+            $install_plugins[] = sprintf( '<a href="%s">%s</a>', esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $path ), 'install-plugin_' . $path ) ), $name );
         }
 
+        // Show notice with install_plugin links.
+        printf(
+            '<div class="notice notice-warning"><p>%s</p></div>',
+            sprintf(
+                __( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-akismet' ),
+                __( 'Paid Memberships Pro - Akismet Integration', 'pmpro-akismet' ),
+                implode( ', ', $install_plugins )
+            )
+        );
+
+        return; // Bail here, so we only show one notice at a time.
+    }
+
+
+    // Check if the required plugins are active and show a notice with activation links if they are not
+    $inactive_plugins = array();
+    foreach ( $required_plugins as $plugin => $name ) {
+        if ( ! is_plugin_active( $plugin ) ) {
+            $inactive_plugins[$plugin] = $name;
+        }
+    }
+
+    // If there are inactive plugins, show a notice.
+    if ( ! empty( $inactive_plugins ) ) {
+        // Build activate links here.
+        $activate_plugins = array();
+        foreach( $inactive_plugins as $path => $name ) {
+            $activate_plugins[] = sprintf( '<a href="%s">%s</a>', esc_url( wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . $path ), 'activate-plugin_' . $path ) ), $name );
+        }
+
+        // Show notice with activate_plugin links.
+        printf(
+            '<div class="notice notice-warning"><p>%s</p></div>',
+            sprintf(
+                __( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-akismet' ),
+                __( 'Paid Memberships Pro - Akismet Integration', 'pmpro-akismet' ),
+                implode( ', ', $activate_plugins )
+            )
+        );
+
+        return; // Bail here, so we only show one notice at a time.
     }
 
     //Check if there's a valid API key in Akismet, if not show a message
