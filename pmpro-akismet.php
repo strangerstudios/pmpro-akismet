@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: Paid Memberships Pro - Akismet Integration
- * Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-akismet/
+ * Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-akismet/
  * Description: Integrates Akismet with Paid Memberships Pro.
  * Version: 1.0
- * Author: Stranger Studios
+ * Author: Paid Memberships Pro
  * Author URI: http://www.strangerstudios.com
  * Text Domain: pmpro-akismet
  * Domain Path: /languages
