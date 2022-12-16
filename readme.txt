@@ -9,8 +9,8 @@ Connect your membership site to Akismet to protect yourself from checkout spam.
 
 == Description ==
 
-Connect your membership site to Akismet to protect yourself from checkout spam. Leverage Akismet anti-spam functionality on your Paid Memberships Pro checkout process.
-
+This plugin integrates the Akismet Plugin with Paid Memberships Pro checkouts to protect your membership site’s checkout process from spam. 
+Similar to how Akismet filters comment spam, this integration will check the submitted email address against Akismet’s world-class spam filters.
 
 == Installation ==
 
