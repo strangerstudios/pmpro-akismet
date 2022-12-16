@@ -5,7 +5,7 @@
  * Description: Integrates Akismet with Paid Memberships Pro.
  * Version: 1.0
  * Author: Paid Memberships Pro
- * Author URI: http://www.strangerstudios.com
+ * Author URI: https://www.paidmembershipspro.com
  * Text Domain: pmpro-akismet
  * Domain Path: /languages
  */
