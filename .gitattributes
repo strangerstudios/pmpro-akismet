@@ -1,3 +1,4 @@
 .gitattributes export-ignore
 pmpro-akismet-banner.png export-ignore
 README.MD export-ignore
+.github export-ignore
