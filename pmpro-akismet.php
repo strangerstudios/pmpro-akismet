@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Paid Memberships Pro - Akismet Integration
  * Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-akismet/
- * Description: Integrates Akismet with Paid Memberships Pro.
+ * Description: Protect your membership site from checkout spam with Akismet and Paid Memberships Pro.
  * Version: 1.0
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
@@ -97,7 +97,7 @@ function pmpro_akismet_pmpro_required() {
 
     //Check if there's a valid API key in Akismet, if not show a message
     if ( ! Akismet::has_valid_key() ) {
-        echo '<div class="error"><p>' . __( 'The Paid Memberships Pro - Akismet Integration add-on requires a valid API key in Akismet. Please enter a valid API key in Akismet to enable anti-spam functionality.', 'pmpro-akismet' ) . '</p></div>';
+        echo '<div class="error"><p>' . __( 'The Paid Memberships Pro - Akismet Integration requires a valid API key in Akismet. Please enter a valid API key in Akismet to enable anti-spam functionality.', 'pmpro-akismet' ) . '</p></div>';
         return;
     }
 
