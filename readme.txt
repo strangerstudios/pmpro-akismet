@@ -20,7 +20,7 @@ By default, Akismet checks your site's comments and certain form submissions aga
 
 With this integration, the same comment spam filters are used to detect checkout form abuse. The plugin checks the submitted email address against Akismet's world-class spam filters. If a checkout is flagged, membership registration is completely blocked.
 
-You can use this plugin to protect free user registations as well as paid checkouts. Payments will not be processed for flagged email addresses, which is a great way to protect your site from card testing, credit card fraud, as well as fake registrations and spam.
+You can use this plugin to protect free user registrations as well as paid checkouts. Payments will not be processed for flagged email addresses, which is a great way to protect your site from card testing, credit card fraud, as well as fake registrations and spam.
 
 == Installation ==
 
