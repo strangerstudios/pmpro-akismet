@@ -57,5 +57,5 @@ View full documentation at: [https://www.paidmembershipspro.com/add-ons/pmpro-ak
 
 == Changelog ==
 
-= 1.0 - TBD =
+= 1.0 - 2023-03-28 =
 * Initial version. 
