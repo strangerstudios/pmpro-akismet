@@ -28,8 +28,8 @@ Note: You must have [Paid Memberships Pro](https://wordpress.org/plugins/paid-me
 
 ### Install PMPro Akismet from within WordPress
 
-1. Visit the plugins page within your dashboard and select "Add New"
-1. Search for "PMPro Akismet"
+1. Make sure Paid Memberships Pro is active.
+1. Visit Memberships > Add Ons
 1. Locate this plugin and click "Install"
 1. Activate "Paid Memberships Pro - Akismet Integration" through the "Plugins" menu in WordPress
 1. Go to "after activation" below.
