@@ -12,6 +12,11 @@ use PMPro_Akismet\Akismet;
  */
 function pmpro_akismet_registration_checks( $continue ) {
 
+    // Bail if another check already failed.
+    if ( ! $continue ) {
+        return $continue;
+    }
+    
     // If the user is logged in already during checkout, just bail. Let's assume they're ok.
     if ( is_user_logged_in() ) {
         return $continue;
