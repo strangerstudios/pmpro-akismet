@@ -52,7 +52,7 @@ function pmpro_akismet_registration_checks( $continue ) {
     } else {
         $continue = false;
         // Set error that user is spam.
-        pmpro_setMessage( __( 'Sorry, your username or email has been flagged as suspicious.', 'pmpro-akismet' ), 'pmpro_error' );        
+        pmpro_setMessage( esc_html__( 'Sorry, your username or email has been flagged as suspicious.', 'pmpro-akismet' ), 'pmpro_error' );        
     }
 
     return $continue;
@@ -73,10 +73,13 @@ function pmpro_akismet_show_privacy_notice() {
 	}
 
     // Show a message that Akismet helps process checkout for spam.
-    echo '<p class="pmpro_akismet_privacy_notice">' . sprintf(
-				__( 'This site uses Akismet to reduce spam. <a href="%s" target="_blank" rel="nofollow noopener">Learn how your data is processed</a>.', 'akismet' ),
-				esc_url( 'https://akismet.com/privacy/' )
-			) . '</p>';
-    
+    ?>
+    <p class="pmpro_akismet_privacy_notice">
+        <?php esc_html_e( 'This site uses Akismet to reduce spam.', 'pmpro-akismet' ); ?>
+        <a href="<?php echo esc_url( 'https://akismet.com/privacy/' ); ?>" target="_blank" rel="nofollow noopener">
+            <?php esc_html_e( 'Learn how your data is processed', 'pmpro-akismet' ); ?>
+        </a>.
+    </p>
+    <?php
 }
 add_action( 'pmpro_checkout_before_submit_button', 'pmpro_akismet_show_privacy_notice' );
