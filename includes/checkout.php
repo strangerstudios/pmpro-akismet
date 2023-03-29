@@ -56,8 +56,14 @@ function pmpro_akismet_registration_checks( $continue ) {
         $continue = true;
     } else {
         $continue = false;
+        
         // Set error that user is spam.
-        pmpro_setMessage( esc_html__( 'Sorry, your username or email has been flagged as suspicious.', 'pmpro-akismet' ), 'pmpro_error' );        
+        pmpro_setMessage( esc_html__( 'Sorry, your username or email has been flagged as suspicious.', 'pmpro-akismet' ), 'pmpro_error' );
+
+        // Track as spam for the PMPro spam protection feature.
+        if ( function_exists( 'pmpro_track_spam_activity' ) ) {
+            pmpro_track_spam_activity();
+        }
     }
 
     return $continue;
