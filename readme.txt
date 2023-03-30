@@ -3,7 +3,7 @@ Contributors: strangerstudios, paidmembershipspro
 Tags: anti-spam, antispam, spam, paid memberships pro, pmpro
 Requires at least: 5.4
 Tested up to: 6.1
-Stable tag: 1.0
+Stable tag: 1.0.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -56,6 +56,10 @@ View full documentation at: [https://www.paidmembershipspro.com/add-ons/pmpro-ak
 2. Message shown on a failed membership checkout when Akismet flags an email address as spam.
 
 == Changelog ==
+
+= 1.0.1 - 2023-03-30 =
+* ENHANCEMENT: Now calling pmpro_track_spam() when spam data is detected. If the PMPro Spam Protection feature is enabled, this will block users from the same IP from submitting checkouts after a certain number of failures.
+* ENHANCEMENT/BUG FIX: Bailing on the registration checks early if there is already another issue with checkout. This helps with performance and won't e.g. check for spam if the user submitted the form with missing fields.
 
 = 1.0 - 2023-03-28 =
 * Initial version. 

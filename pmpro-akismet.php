@@ -3,7 +3,7 @@
  * Plugin Name: Paid Memberships Pro - Akismet Integration
  * Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-akismet/
  * Description: Protect your membership site from checkout spam with Akismet and Paid Memberships Pro.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
  * Text Domain: pmpro-akismet
