@@ -115,3 +115,18 @@ function pmpro_akismet_load_textdomain() {
     load_plugin_textdomain( 'pmpro-akismet', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'pmpro_akismet_load_textdomain' );
+
+/**
+ * Function to add links to the plugin row meta
+ */
+function pmpro_akismet_plugin_row_meta( $links, $file ) {
+	if ( strpos( $file, 'pmpro-akismet.php' ) !== false ) {
+		$new_links = array(
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-akismet/' ) . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-akismet' ) ) . '">' . __( 'Docs', 'pmpro-akismet' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-akismet' ) ) . '">' . __( 'Support', 'pmpro-akismet' ) . '</a>',
+		);
+		$links     = array_merge( $links, $new_links );
+	}
+	return $links;
+}
+add_filter( 'plugin_row_meta', 'pmpro_akismet_plugin_row_meta', 10, 2 );
