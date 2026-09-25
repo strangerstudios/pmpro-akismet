@@ -10,6 +10,10 @@
  * Domain Path: /languages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use PMPro_Akismet\Akismet;
 
 /**
@@ -26,7 +30,8 @@ require_once( dirname( __FILE__ ) . '/includes/checkout.php' );
 function pmpro_akismet_pmpro_required() {
 
     // Only show notices on PMPro page.
-    if ( ! isset( $_REQUEST['page'] ) || strpos( $_REQUEST['page'], 'pmpro' ) === false ) {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of the current admin page to decide whether to show a notice.
+    if ( ! isset( $_REQUEST['page'] ) || strpos( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ), 'pmpro' ) === false ) {
         return;
     }
 
@@ -58,7 +63,7 @@ function pmpro_akismet_pmpro_required() {
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-akismet' ),
                 esc_html__( 'Paid Memberships Pro - Akismet Integration', 'pmpro-akismet' ),
-                implode( ', ', $install_plugins ) // $install_plugins was escaped when built.
+                implode( ', ', $install_plugins ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $install_plugins was escaped when built.
             )
         );
 
@@ -90,7 +95,7 @@ function pmpro_akismet_pmpro_required() {
             sprintf(
                 esc_html__( 'The following plugin(s) are required for the %1$s plugin to work: %2$s', 'pmpro-akismet' ),
                 esc_html__( 'Paid Memberships Pro - Akismet Integration', 'pmpro-akismet' ),
-                implode( ', ', $activate_plugins ) // $activate_plugins was escaped when built.
+                implode( ', ', $activate_plugins ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $activate_plugins was escaped when built.
             )
         );
 
