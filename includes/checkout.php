@@ -46,7 +46,7 @@ function pmpro_akismet_registration_checks( $continue ) {
         'blog_charset' => get_option( 'blog_charset' ),
         'permalink' => get_permalink(),
         'comment_type' => 'signup',
-        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- PMPro core verifies pmpro_checkout_nonce in preheaders/checkout.php before running pmpro_registration_checks.
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Values are only sent to Akismet for spam scoring; core verifies pmpro_checkout_nonce before this filter on standard checkouts.
         'comment_author' => isset( $_REQUEST['username'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['username'] ) ) : '',
         'comment_author_email' => isset( $_REQUEST['bemail'] ) ? sanitize_email( wp_unslash( $_REQUEST['bemail'] ) ) : '',
         // phpcs:enable WordPress.Security.NonceVerification.Recommended
