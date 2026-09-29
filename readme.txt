@@ -2,8 +2,8 @@
 Contributors: strangerstudios, paidmembershipspro
 Tags: anti-spam, antispam, spam, paid memberships pro, pmpro
 Requires at least: 5.4
-Tested up to: 6.6.1
-Stable tag: 1.2
+Tested up to: 7.1
+Stable tag: 1.1.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -56,6 +56,11 @@ View full documentation at: [https://www.paidmembershipspro.com/add-ons/pmpro-ak
 2. Message shown on a failed membership checkout when Akismet flags an email address as spam.
 
 == Changelog ==
+
+= 1.1.1 - 2026-09-29 =
+* SECURITY: Improved sanitization and escaping throughout the plugin to resolve Plugin Check security findings. #8 (@dparker1005)
+* ENHANCEMENT: Added Docs and Support links to the plugin's row on the Plugins page. #7 (@ipokkel)
+* BUG FIX: Fixed an undefined index notice at checkout when the request has no Referer header. #8 (@dparker1005)
 
 = 1.1 - 2024-08-12 =
 * FEATURE: Now only blocking "definite" spam. For "likely spam", users are prompted to checkout again.
