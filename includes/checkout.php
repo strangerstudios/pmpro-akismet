@@ -3,6 +3,10 @@
  * All checkout/registration functionality.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use PMPro_Akismet\Akismet;
 
 /**
@@ -34,16 +38,18 @@ function pmpro_akismet_registration_checks( $continue ) {
     }
  
     $data_to_check = array(
-        'user_ip' => sanitize_text_field(  $_SERVER['REMOTE_ADDR'] ),
-        'user_agent' => sanitize_text_field(  $_SERVER['HTTP_USER_AGENT'] ),
-        'referrer' => sanitize_text_field(  $_SERVER['HTTP_REFERER'] ),
+        'user_ip' => isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '',
+        'user_agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '',
+        'referrer' => isset( $_SERVER['HTTP_REFERER'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) : '',
         'blog' => get_option( 'home' ),
         'blog_lang' => get_locale(),
         'blog_charset' => get_option( 'blog_charset' ),
         'permalink' => get_permalink(),
         'comment_type' => 'signup',
-        'comment_author' => sanitize_text_field( $_REQUEST['username'] ),
-        'comment_author_email' => sanitize_email( $_REQUEST['bemail'] ),
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Values are only sent to Akismet for spam scoring; core verifies pmpro_checkout_nonce before this filter on standard checkouts.
+        'comment_author' => isset( $_REQUEST['username'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['username'] ) ) : '',
+        'comment_author_email' => isset( $_REQUEST['bemail'] ) ? sanitize_email( wp_unslash( $_REQUEST['bemail'] ) ) : '',
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         'honeypot_field_name' => 'fullname'
     );
     
@@ -62,7 +68,7 @@ function pmpro_akismet_registration_checks( $continue ) {
     }
 
     // If an extra nonce was passed in, raise the threshold.
-    if ( ! empty( $_REQUEST['pmpro_akismet_extra_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_REQUEST['pmpro_akismet_extra_nonce'] ), 'pmpro_akismet_extra_nonce' ) ) {
+    if ( ! empty( $_REQUEST['pmpro_akismet_extra_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['pmpro_akismet_extra_nonce'] ) ), 'pmpro_akismet_extra_nonce' ) ) {
         $threshold = 2;
 
         // Update nonce in case they need to submit again.
